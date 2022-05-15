@@ -5,6 +5,7 @@ Date :- 14-5-2022
 """
 import concurrent.futures
 import os
+import json
 import requests
 from logger import logger
 import constants as constant
@@ -24,17 +25,18 @@ def save_coin_data(coin_details, api_url, max_days):
     try:
         api_url = api_url.format(coin_details['id'], max_days)
         api_response = requests.get(api_url)
-
         if not os.path.exists("coin_data"):
             os.makedirs("coin_data")
 
         with open(os.path.join("coin_data", f"{coin_details['id']}.json"), "w+", encoding="utf-8") \
                 as file:
-            file.write(api_response.text)
+            json.dump(api_response.json(), file, ensure_ascii=False)
 
         logger.info(
             f"coin {coin_details['id']} processed successfully".center(80, "*"))
+
         return True
+
     except OSError:
         logger.exception(
             f"Exception occured coin {coin_details['id']}\n",  exc_info=True)

@@ -3,3 +3,5 @@ Flask-PyMongo==2.3.0
 pymongo == 3.12.1
 requests == 2.26.0
 
+# open cmd and use set PYTHONPATH=. as enviornment variable 
+# powershell $Env:PYTHONPATH = "."
