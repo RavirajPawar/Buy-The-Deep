@@ -9,8 +9,9 @@ class CustomLogger(metaclass=Singleton):
         self.custom_logger = logging.getLogger("__name__")
         stream_handler = logging.StreamHandler()
         log_formatter = logging.Formatter(
-            '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+            '%(asctime)s - %(levelname)s - %(message)s')
         stream_handler.setFormatter(log_formatter)
+        self.custom_logger.setLevel(logging.INFO)
         self.custom_logger.addHandler(stream_handler)
 
 
