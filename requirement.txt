@@ -2,6 +2,7 @@ Flask==1.1.4
 Flask-PyMongo==2.3.0
 pymongo == 3.12.1
 requests == 2.26.0
-
+matplotlib == 3.5.2
+pandas == 1.4.2
 # open cmd and use set PYTHONPATH=. as enviornment variable 
 # powershell $Env:PYTHONPATH = "."
