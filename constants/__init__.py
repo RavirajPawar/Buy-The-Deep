@@ -21,3 +21,5 @@ HISTORICAL_DATA_API = (
 CURRENT_COIN_DATA = (
     "https://api.coingecko.com/api/v3/simple/price?ids={}&vs_currencies=inr"
 )
+
+WINDOW_OF_DAYS = 7
