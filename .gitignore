@@ -149,3 +149,5 @@ flask_session
 #Procfile and config file
 #Procfile
 #config.py
+
+.vscode
