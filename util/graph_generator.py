@@ -12,7 +12,7 @@ def get_weekly_high_low(data, window_of_days=7):
     last_index = len(data)
     sorted_data = list()
     for i in range(0, len(data)):
-        if last_index-window_of_days < 0:
+        if last_index - window_of_days < 0:
             temp = data[:last_index]
             temp = sorted(temp, key=lambda record: record[1])
             temp = sorted(temp, key=lambda record: record[1])
@@ -20,8 +20,8 @@ def get_weekly_high_low(data, window_of_days=7):
             sorted_data.append(temp[-1])
             break
         else:
-            temp = data[last_index-window_of_days:last_index]
-            last_index = last_index-window_of_days
+            temp = data[last_index - window_of_days : last_index]
+            last_index = last_index - window_of_days
         if temp:
             # weekly_low, weekly_high = sorted(temp, key=lambda record: record[1])
             print("weekly data", sorted(temp, key=lambda record: record[1]))
@@ -33,7 +33,9 @@ def get_weekly_high_low(data, window_of_days=7):
     return sorted(sorted_data, key=lambda record: record[0])
 
 
-HISTORICAL_DATA_API = "https://api.coingecko.com/api/v3/coins/{}/market_chart?vs_currency=USD&days={}"
+HISTORICAL_DATA_API = (
+    "https://api.coingecko.com/api/v3/coins/{}/market_chart?vs_currency=USD&days={}"
+)
 
 api_url = HISTORICAL_DATA_API.format("bitcoin", 10000)
 api_response = requests.get(api_url)
@@ -45,7 +47,7 @@ x, y = list(), list()
 for index, point in enumerate(data, start=1):
     x_point, y_point = point
     # cause time is in milisecond
-    x.append(datetime.datetime.fromtimestamp(x_point//1000).date())
+    x.append(datetime.datetime.fromtimestamp(x_point // 1000).date())
     y.append(y_point)
     print(index, " point ", x_point, y_point)
 
@@ -64,8 +66,8 @@ for index, point in enumerate(data, start=1):
 # plt.show()
 
 
-plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%d/%m/%Y'))
+plt.gca().xaxis.set_major_formatter(mdates.DateFormatter("%d/%m/%Y"))
 plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=10))
-plt.plot(x, y, marker='X', markerfacecolor='red')
+plt.plot(x, y, marker="X", markerfacecolor="red")
 plt.gcf().autofmt_xdate()
 plt.show()
