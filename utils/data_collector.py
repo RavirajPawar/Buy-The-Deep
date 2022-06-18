@@ -69,6 +69,19 @@ def fetch_coins_data(coin_ids: List):
 
 
 def get_weekly_high_low(data, window_of_days):
+    """
+    Gets historical data of coin, makes batch of 7 days and finds high and low of that week.
+
+    Args:
+        data (list of list) : list of historical data each item consist timestamp and price in INR.
+        window_of_days (int): constant value 7 for representing week.
+
+    Returns:
+        weekly_high_low_data (dict):
+            key (int)   : week number from data available
+            value(tuple): index 0 for weekly high index 1 for weekly low
+
+    """
     weekly_high_low_data = dict()
     for i in range(0, len(data), window_of_days):
         # item of weekly_data is list where 0th index is timestamp 1st index is price in ₹
