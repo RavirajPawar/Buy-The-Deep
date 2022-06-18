@@ -14,6 +14,7 @@ from constants import (
     WINDOW_OF_DAYS,
 )
 from utils import calculate_time
+from utils.coin_validator import WeeklyData
 
 
 def get_data(coin_id):
@@ -91,5 +92,7 @@ def get_weekly_high_low(data, window_of_days):
         # sorting weekly_data in ascending order with help of price
         weekly_data = sorted(weekly_data, key=lambda dayly_data: dayly_data[1])
         if weekly_data:
-            weekly_high_low_data[i + 1] = (weekly_data[-1], weekly_data[0])
+            weekly_high_low_data[i + 1] = WeeklyData(
+                **{"weekly_high": weekly_data[-1], "weekly_low": weekly_data[0]}
+            )
     return weekly_high_low_data

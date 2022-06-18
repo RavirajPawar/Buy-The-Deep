@@ -3,9 +3,7 @@ import json
 import time
 from constants import (
     COIN_METADATA,
-    HISTORICAL_DATA_API,
     CURRENT_COIN_DATA,
-    MAX_DAYS,
     WINDOW_OF_DAYS,
 )
 from utils.data_collector import fetch_coins_data, get_weekly_high_low
@@ -18,14 +16,4 @@ coin_weekly_high_low_map = {
     id: get_weekly_high_low(historical_data[id][::-1], WINDOW_OF_DAYS)
     for id in historical_data
 }
-for id in historical_data:
-    print(
-        "id",
-        id,
-        "\ntotal weeks",
-        len(coin_weekly_high_low_map[id].keys()),
-        "\ntotal days / 7 ",
-        len(historical_data[id]) // 7,
-        "\n",
-        "*" * 100,
-    )
+print(coin_weekly_high_low_map["bitcoin"][1])
