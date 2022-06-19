@@ -83,16 +83,18 @@ def get_weekly_high_low(data, window_of_days):
             value(tuple): index 0 for weekly high index 1 for weekly low
 
     """
+
     weekly_high_low_data = dict()
-    for i in range(0, len(data), window_of_days):
+    for week_number, index in enumerate(range(0, len(data), window_of_days), start=1):
         # item of weekly_data is list where 0th index is timestamp 1st index is price in ₹
-        weekly_data = data[i : i + window_of_days]
+        weekly_data = data[index : index + window_of_days]
         # removing null price timestamp from weekly data
         weekly_data = [data for data in weekly_data if data[1]]
         # sorting weekly_data in ascending order with help of price
         weekly_data = sorted(weekly_data, key=lambda dayly_data: dayly_data[1])
         if weekly_data:
-            weekly_high_low_data[i + 1] = WeeklyData(
+            weekly_high_low_data[week_number] = WeeklyData(
                 **{"weekly_high": weekly_data[-1], "weekly_low": weekly_data[0]}
             )
+
     return weekly_high_low_data

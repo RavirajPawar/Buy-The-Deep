@@ -9,5 +9,6 @@ openpyxl==3.0.9
 xlrd == 1.2.0
 Flask-Session == 0.4.0
 matplotlib == 3.5.2
+jupyterlab == 3.4.3
 # open cmd and use set PYTHONPATH=. as enviornment variable 
 # powershell $Env:PYTHONPATH = "."
